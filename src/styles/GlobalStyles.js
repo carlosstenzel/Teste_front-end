@@ -9,6 +9,10 @@ export default createGlobalStyle`
  body {
    background: #FFF;
    color: #000;
-   font-family: Roboto, Arial, Helvetica, sans-serif;
+   font-family: 'Roboto Slab', serif;
+ }
+
+ h1, h2, h3, h4, h5, h6, p {
+  font-family: 'Roboto Slab', serif;
  }
 `;

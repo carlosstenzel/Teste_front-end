@@ -34,8 +34,14 @@ export default class MyDocument extends Document {
         <Head>
           <meta charSet="utl-8" />
           <link
-            href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap"
             rel="stylesheet"
+          />
+          <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css"
+            integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I="
+            crossorigin="anonymous"
           />
         </Head>
         <body>
