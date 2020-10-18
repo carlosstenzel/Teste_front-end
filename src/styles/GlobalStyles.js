@@ -19,6 +19,10 @@ export default createGlobalStyle`
  .card {
    border-radius: 5px;
    padding: 25px 15px 35px;
+
+   .color-footer-card {
+      color: #333;
+   }
  }
 
  .search {
@@ -31,7 +35,7 @@ export default createGlobalStyle`
     box-shadow: none;
 
     &::placeholder{
-      color: #333;
+      color: #6f6e6e;
     }
 
     &:focus {

@@ -1,5 +1,6 @@
 import Accordion from '../components/Accordion';
 import Ranger from '../components/Ranger';
+import RangerRisk from '../components/RangerRisk';
 
 import { HeaderContainer } from '../styles/pages/home';
 
@@ -39,23 +40,28 @@ export default function Home() {
                         min="0"
                         max="50000"
                         step="100"
-                        before="R$"
-                        after=",00"
+                        beforeText="R$"
+                        afterText=",00"
                       />
                     </div>
-                    <div className="medium-4 cell"></div>
+                    <div className="medium-4 cell">
+                      <RangerRisk title="Perfil de risco do fundo" />
+                    </div>
                     <div className="medium-4 cell">
                       <Ranger
                         title="Prazo de resgate"
                         min="0"
                         max="365"
-                        before=""
-                        after=" dias úteis"
+                        beforeText=""
+                        afterText=" dias úteis"
                       />
                     </div>
                   </div>
                 </div>
               </div>
+              <p className="color-footer-card">
+                <small>Horário limite de aplicação 12:00</small>
+              </p>
             </div>
           </div>
           <div className="medium-3 cell">

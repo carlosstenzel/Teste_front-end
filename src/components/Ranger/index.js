@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Input, Label, Container } from './styles';
 
-function Ranger({ title, min, max, step, before, after }) {
+function Ranger({ title, min, max, step, beforeText, afterText }) {
   const [valueRange, setValueRange] = useState(0);
 
   return (
@@ -16,9 +16,9 @@ function Ranger({ title, min, max, step, before, after }) {
           onChange={(e) => setValueRange(e.target.value)}
         />
         <p>
-          Até {before}
+          Até {beforeText}
           {valueRange}
-          {after}{' '}
+          {afterText}{' '}
         </p>
       </Container>
     </>
