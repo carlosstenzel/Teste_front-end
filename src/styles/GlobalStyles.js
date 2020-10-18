@@ -35,7 +35,7 @@ export default createGlobalStyle`
     box-shadow: none;
 
     &::placeholder{
-      color: #6f6e6e;
+      color: #333;
     }
 
     &:focus {

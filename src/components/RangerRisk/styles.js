@@ -8,7 +8,7 @@ export const Label = styled.label`
 
 export const Container = styled.div`
   position: relative;
-  padding: 2rem 1rem;
+  padding: 1.5rem;
 
   span {
     font-size: 11px;
