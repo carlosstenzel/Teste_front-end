@@ -1,15 +1,12 @@
-import { useState } from 'react';
-import { Input, Label, Container } from './styles';
+import { Label, Container } from './styles';
 
 function RangerRisk({ title }) {
-  const [valueRange, setValueRange] = useState(0);
-
   return (
     <>
       <Container>
         <Label>{title}</Label>
 
-        <div clasName="rating">
+        <div className="rating">
           <div className="grid-x">
             <div className="medium-2 cell">
               <span>menor</span>
