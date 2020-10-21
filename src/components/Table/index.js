@@ -32,12 +32,12 @@ export function TableContainer({ data }) {
         <tbody>
           {funds.map((nameFunds, index) => {
             return (
-              <>
+              <React.Fragment key={index}>
                 <tr className="strategy-name">
                   <th colSpan="8">{nameFunds.nameMacro}</th>
                 </tr>
                 {Object.keys(nameFunds.filterFundClass).map((item) => (
-                  <>
+                  <React.Fragment key={item}>
                     <tr className="strategy-funds">
                       <th colSpan="8">{item}</th>
                     </tr>
@@ -45,7 +45,7 @@ export function TableContainer({ data }) {
                       var ObjFunds = nameFunds.filterFundClass[item][li];
 
                       return (
-                        <>
+                        <React.Fragment key={li}>
                           {ObjFunds ? (
                             <TableChildren
                               data={ObjFunds}
@@ -53,12 +53,12 @@ export function TableContainer({ data }) {
                               nameMacroSub={item}
                             />
                           ) : null}
-                        </>
+                        </React.Fragment>
                       );
                     })}
-                  </>
+                  </React.Fragment>
                 ))}
-              </>
+              </React.Fragment>
             );
           })}
         </tbody>
@@ -89,15 +89,15 @@ export function TableChildren({ data, nameMacro, nameMacroSub }) {
               className={`fund-info-risk-level-${ObjFunds.specification.fund_risk_profile.score_range_order}`}
             ></div>
           </div>
-          <p>
+          <p className="fund-icons">
             {ObjFunds.simple_name}
-            <span className="fund-icons">
-              {ObjFunds.specification.is_qualified ? (
-                <Tooltip title="Fundo para investidor qualificado">
-                  <MdStars color="#639d31" size={16} />
-                </Tooltip>
-              ) : null}
-              {/**
+
+            {ObjFunds.specification.is_qualified ? (
+              <Tooltip title="Fundo para investidor qualificado">
+                <MdStars color="#639d31" size={16} />
+              </Tooltip>
+            ) : null}
+            {/**
 
                  <MdCheckCircle
                 color="#9c9d9e"
@@ -105,7 +105,7 @@ export function TableChildren({ data, nameMacro, nameMacroSub }) {
                 data-title="Você já investe neste fundo."
               />
                  */}
-            </span>
+
             <span className="fund-type">
               {nameMacro} | {nameMacroSub}
             </span>

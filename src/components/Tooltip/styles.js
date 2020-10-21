@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.span`
   position: absolute;
   display: inline-block;
   cursor: pointer;
