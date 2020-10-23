@@ -10,6 +10,7 @@ import {
 } from 'react-icons/md';
 
 import Tooltip from '../Tooltip';
+import { FaSpinner } from 'react-icons/fa';
 
 export function TableContainer({ data }) {
   const funds = data;
@@ -30,37 +31,51 @@ export function TableContainer({ data }) {
           </tr>
         </thead>
         <tbody>
-          {funds.map((nameFunds, index) => {
-            return (
-              <React.Fragment key={index}>
-                <tr className="strategy-name">
-                  <th colSpan="8">{nameFunds.nameMacro}</th>
-                </tr>
-                {Object.keys(nameFunds.filterFundClass).map((item) => (
-                  <React.Fragment key={item}>
-                    <tr className="strategy-funds">
-                      <th colSpan="8">{item}</th>
-                    </tr>
-                    {Object.keys(item).map((li) => {
-                      var ObjFunds = nameFunds.filterFundClass[item][li];
+          {funds === null ? (
+            <tr className="strategy-funds nonefunds spinner">
+              <th colSpan="8">
+                <FaSpinner size={38} color="#444" />
+              </th>
+            </tr>
+          ) : funds.length > 0 ? (
+            funds.map((nameFunds, index) => {
+              return (
+                <React.Fragment key={index}>
+                  <tr className="strategy-name">
+                    <th colSpan="8">{nameFunds.nameMacro}</th>
+                  </tr>
+                  {Object.keys(nameFunds.filterFundClass).map((item) => (
+                    <React.Fragment key={item}>
+                      <tr className="strategy-funds">
+                        <th colSpan="8">{item}</th>
+                      </tr>
+                      {Object.keys(item).map((li) => {
+                        var ObjFunds = nameFunds.filterFundClass[item][li];
 
-                      return (
-                        <React.Fragment key={li}>
-                          {ObjFunds ? (
-                            <TableChildren
-                              data={ObjFunds}
-                              nameMacro={nameFunds.nameMacro}
-                              nameMacroSub={item}
-                            />
-                          ) : null}
-                        </React.Fragment>
-                      );
-                    })}
-                  </React.Fragment>
-                ))}
-              </React.Fragment>
-            );
-          })}
+                        return (
+                          <React.Fragment key={li}>
+                            {ObjFunds ? (
+                              <TableChildren
+                                data={ObjFunds}
+                                nameMacro={nameFunds.nameMacro}
+                                nameMacroSub={item}
+                              />
+                            ) : null}
+                          </React.Fragment>
+                        );
+                      })}
+                    </React.Fragment>
+                  ))}
+                </React.Fragment>
+              );
+            })
+          ) : (
+            <tr className="strategy-funds nonefunds spinner">
+              <th colSpan="8">
+                <h5>Nenhum fundo de investimento encontrado</h5>
+              </th>
+            </tr>
+          )}
         </tbody>
       </table>
     </Funds>
@@ -139,7 +154,7 @@ export function TableChildren({ data, nameMacro, nameMacroSub }) {
           </Tooltip>
         </td>
         <td className="text-center">
-          {ObjFunds.is_closed ? (
+          {!ObjFunds.is_closed_to_capture ? (
             <button className="button small button-apply" type="button">
               <MdReply size={20} />
             </button>

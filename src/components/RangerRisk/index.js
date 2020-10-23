@@ -1,6 +1,6 @@
 import { Label, Container } from './styles';
 
-function RangerRisk({ title }) {
+function RangerRisk({ title, ...rest }) {
   return (
     <>
       <Container>
@@ -33,6 +33,7 @@ function RangerRisk({ title }) {
                 max="12"
                 step="1"
                 list="custom-list"
+                {...rest}
               />
             </div>
             <div className="medium-2 cell">

@@ -18,7 +18,7 @@ function Accordion({ before = null, title, children }) {
   return (
     <Section>
       <Button className={`${setActive}`} onClick={toggleAccordion}>
-        <Title dangerouslySetInnerHTML={{ __html: title }}></Title>
+        <Title>{title}</Title>
         <Icon>
           {setActive === 'active' ? (
             <FaMinus width={10} fill={'#444'} />

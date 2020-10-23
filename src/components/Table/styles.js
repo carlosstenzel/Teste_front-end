@@ -27,6 +27,26 @@ export const Funds = styled.div`
     cursor: pointer;
   }
 
+  .nonefunds {
+    th {
+      padding: 50px 0;
+      text-align: center !important;
+    }
+  }
+
+  .spinner svg {
+    animation: rotation 2s infinite linear;
+  }
+
+  @keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
+
   .strategy-funds {
     th {
       background: #f4f5f7 !important;
@@ -103,26 +123,6 @@ export const Funds = styled.div`
     }
     .fund-info-risk-level-12 {
       background: #b51414;
-    }
-  }
-
-  .button-apply {
-    background: #119c9f;
-    border: solid 2px transparent;
-    color: #fff;
-
-    display: block;
-
-    height: 20px;
-    position: relative;
-
-    width: 20px;
-    border-radius: 50% 50%;
-
-    svg {
-      transform: rotate(101deg) translateX(-1px) translateY(-1px);
-      margin-top: -10px;
-      margin-left: -10px;
     }
   }
 

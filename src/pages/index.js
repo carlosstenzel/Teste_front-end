@@ -1,19 +1,87 @@
-import {
-  MdCheckCircle,
-  MdReply,
-  MdStars,
-  MdHelpOutline,
-  MdInfoOutline,
-  MdBlock,
-} from 'react-icons/md';
+import { useEffect, useState } from 'react';
+import _ from 'lodash';
+
 import Accordion from '../components/Accordion';
 import Ranger from '../components/Ranger';
+import { Amount, daysRetrievel } from '../components/Ranger/rangeData';
 import RangerRisk from '../components/RangerRisk';
 import { TableContainer } from '../components/Table';
+import Legend from '../_layout/legend';
 
 import { HeaderContainer } from '../styles/pages/home';
 
-export default function Home({ funds }) {
+export default function Home({ data }) {
+  const [funds, setFunds] = useState(null);
+
+  const FormatData = (data) => {
+    const response = _.groupBy(data, 'specification.fund_macro_strategy.name');
+
+    const filterWithclass = Object.keys(response).map((nameMacro) => {
+      const filterFundClass = _.groupBy(
+        response[nameMacro],
+        'specification.fund_main_strategy.name'
+      );
+
+      let filterFunds = {
+        nameMacro,
+        filterFundClass,
+      };
+
+      return filterFunds;
+    });
+
+    return filterWithclass;
+  };
+
+  useEffect(() => {
+    setFunds(FormatData(data));
+  }, [data]);
+
+  const handleSearch = (name) => {
+    const filterPerRisk = data.filter((re) =>
+      re.simple_name.toLowerCase().includes(name.toLowerCase())
+    );
+
+    const response = FormatData(filterPerRisk);
+
+    setFunds(response);
+  };
+
+  const handleChangeRisk = (numberRisk) => {
+    const filterPerRisk = data.filter(
+      (re) =>
+        re.specification.fund_risk_profile.score_range_order ===
+        parseInt(numberRisk)
+    );
+
+    const response = FormatData(filterPerRisk);
+
+    setFunds(response);
+  };
+
+  const handleChangeDays = (days) => {
+    const filterPerDays = data.filter(
+      (re) =>
+        re.operability.retrieval_quotation_days <= daysRetrievel[parseInt(days)]
+    );
+
+    const response = FormatData(filterPerDays);
+
+    setFunds(response);
+  };
+
+  const handleChangeMinAmount = (amount) => {
+    const filterPerMinAmount = data.filter(
+      (re) =>
+        re.operability.minimum_initial_application_amount <=
+        Amount[parseInt(amount)]
+    );
+
+    const response = FormatData(filterPerMinAmount);
+
+    setFunds(response);
+  };
+
   return (
     <>
       <HeaderContainer>
@@ -38,25 +106,37 @@ export default function Home({ funds }) {
                           type="search"
                           name="search"
                           placeholder="Busque fundo por nome"
+                          onChange={(e) => handleSearch(e.target.value)}
                         />
                       </div>
                     </div>
                   </div>
                   <div className="grid-x grid-margin-x">
                     <div className="medium-4 cell">
-                      <Ranger title="Aplicação mínima" min="0" max="17" />
+                      <Ranger
+                        title="Aplicação mínima"
+                        min="0"
+                        max="17"
+                        valueDefault="R$ 25.000,00"
+                        onInput={(e) => handleChangeMinAmount(e.target.value)}
+                      />
                     </div>
                     <div className="medium-4 cell">
-                      <RangerRisk title="Perfil de risco do fundo" />
+                      <RangerRisk
+                        title="Perfil de risco do fundo"
+                        onInput={(e) => handleChangeRisk(e.target.value)}
+                      />
                     </div>
                     <div className="medium-4 cell">
                       <Ranger
                         title="Prazo de resgate"
                         min="0"
                         max="42"
+                        valueDefault="30"
                         beforeText=""
                         afterText=" dias úteis"
                         type="days"
+                        onInput={(e) => handleChangeDays(e.target.value)}
                       />
                     </div>
                   </div>
@@ -66,48 +146,18 @@ export default function Home({ funds }) {
                 <small>Horário limite de aplicação 12:00</small>
               </p>
             </div>
-
             <TableContainer data={funds} />
-
-            <div className="grid-x">
-              <div className="medium-5 cell">
-                <div className="card legenda">
-                  <h6>Legenda</h6>
-
-                  <ul>
-                    <li>
-                      <MdStars color="#639d31" size={25} />
-                      Fundo para investidor qualificado
-                    </li>
-                    <li>
-                      <MdCheckCircle color="#9c9d9e" size={25} />
-                      Você já investe neste fundo
-                    </li>
-                    <li>
-                      {' '}
-                      <MdInfoOutline color="#444" size={25} />
-                      Entenda o resgate deste fundo
-                    </li>
-                    <li>
-                      <MdBlock color="#9c9d9e" size={25} /> Fundo fechado para
-                      aplicação
-                    </li>
-                    <li>
-                      <button
-                        className="button small button-apply"
-                        type="button"
-                      >
-                        <MdReply size={20} />
-                      </button>
-                      Aplicar neste fundo
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+            <Legend />
           </div>
           <div className="medium-3 cell">
-            <Accordion title="<input type='checkbox' id='checkboxAll' /> <label id='checkboxAll'>RENDA FIXA</label>">
+            <Accordion
+              title={
+                <>
+                  <input type="checkbox" id="checkboxAll" />{' '}
+                  <label id="checkboxAll">RENDA FIXA</label>
+                </>
+              }
+            >
               <ul>
                 <li>
                   <input id="checkbox1" type="checkbox" />
@@ -148,7 +198,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      funds,
+      data: funds,
     },
     revalidate: 1, // In seconds
   };

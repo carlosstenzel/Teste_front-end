@@ -94,4 +94,23 @@ export default createGlobalStyle`
   }
 }
 
+.button-apply {
+    background: #119c9f;
+    border: solid 2px transparent;
+    color: #fff;
+
+    display: block;
+
+    height: 20px;
+    position: relative;
+
+    width: 20px;
+    border-radius: 50% 50%;
+
+    svg {
+      transform: rotate(101deg) translateX(-1px) translateY(-1px);
+      margin-top: -10px;
+      margin-left: -10px;
+    }
+  }
 `;

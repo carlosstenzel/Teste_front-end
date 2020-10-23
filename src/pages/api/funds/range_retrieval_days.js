@@ -12,11 +12,15 @@ async function rangeRetrievalDays(req, res) {
   const response2 = await axios.get(urlData);
   const data = response2.data;
 
-  const response = _.groupBy(data, 'operability.retrieval_quotation_days');
+  const response = _.groupBy(
+    data,
+    'operability.retrieval_quotation_days'
+  )._.orderBy(data, '', 'asc');
+
   const filterFunds = [];
   Object.keys(response).map((nameMacro) => {
     filterFunds.push(parseInt(nameMacro));
   });
-  return res.send(filterFunds);
+  return res.send(filterFunds._.orderBy(response, '', 'asc'));
 }
 module.exports = cors(rangeRetrievalDays);
