@@ -40,16 +40,21 @@ export const Content = styled.div`
   transition: max-height 0.6s ease;
 
   & > div {
-    padding: 8px 0px 5px;
+    padding: 8px 0px 0px 0px;
 
     & ul {
       list-style: none;
       margin-left: 0px;
+      margin-bottom: 0px;
 
       li {
         border-bottom: 1.5px solid #e8e8e8;
         font-size: 13px;
         padding: 7px 0px 5px 25px;
+
+        &:hover {
+          background: #d9f5fb;
+        }
 
         label {
           color: #333;

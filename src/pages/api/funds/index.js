@@ -1,5 +1,4 @@
 const Cors = require('micro-cors');
-const _ = require('lodash');
 const axios = require('axios');
 const cors = Cors({
   allowedMethods: ['GET'],
@@ -12,22 +11,6 @@ async function Funds(req, res) {
   const response2 = await axios.get(urlData);
   const data = response2.data;
 
-  const response = _.groupBy(data, 'specification.fund_macro_strategy.name');
-
-  const filterWithclass = Object.keys(response).map((nameMacro) => {
-    const filterFundClass = _.groupBy(
-      response[nameMacro],
-      'specification.fund_main_strategy.name'
-    );
-
-    let filterFunds = {
-      nameMacro,
-      filterFundClass,
-    };
-
-    return filterFunds;
-  });
-
-  return res.json(filterWithclass);
+  return res.json(data);
 }
 module.exports = cors(Funds);

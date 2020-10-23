@@ -13,6 +13,7 @@ async function rangeRetrievalDays(req, res) {
   const data = response2.data;
 
   const response = _.groupBy(data, 'operability.retrieval_quotation_days');
+
   const filterFunds = [];
   Object.keys(response).map((nameMacro) => {
     filterFunds.push(parseInt(nameMacro));

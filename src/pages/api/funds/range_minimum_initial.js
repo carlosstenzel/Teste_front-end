@@ -16,10 +16,26 @@ async function rangeMinimumInitial(req, res) {
     data,
     'operability.minimum_initial_application_amount'
   );
+
   const filterFunds = [];
   Object.keys(response).map((nameMacro) => {
-    filterFunds.push(nameMacro);
+    filterFunds.push(parseFloat(nameMacro));
   });
-  return res.send(filterFunds);
+
+  function sortArray(array) {
+    var temp = 0;
+    for (var i = 0; i < array.length; i++) {
+      for (var j = i; j < array.length; j++) {
+        if (array[j] < array[i]) {
+          temp = array[j];
+          array[j] = array[i];
+          array[i] = temp;
+        }
+      }
+    }
+    return array;
+  }
+
+  return res.send(sortArray(filterFunds));
 }
 module.exports = cors(rangeMinimumInitial);
