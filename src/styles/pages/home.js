@@ -8,9 +8,17 @@ export const HeaderContainer = styled.div`
 
   h1 {
     margin-bottom: 20px;
+
+    @media (max-width: 480px) {
+      font-size: 2rem;
+    }
   }
 
   p {
     font-size: 1.5rem;
+    @media (max-width: 480px) {
+      font-size: 1.1rem;
+      font-weight: 100;
+    }
   }
 `;

@@ -66,6 +66,7 @@ export const Label = styled.label`
   color: #444;
   font-weight: bold;
   margin-bottom: 15px;
+  text-align: center;
 `;
 
 export const Container = styled.div`
@@ -74,5 +75,6 @@ export const Container = styled.div`
   p {
     color: #333;
     margin-top: 10px;
+    text-align: center;
   }
 `;

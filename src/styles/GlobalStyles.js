@@ -11,6 +11,7 @@ export default createGlobalStyle`
    color: #000;
    font-family: 'Roboto Slab', serif;
    -moz-osx-font-smoothing: grayscale;
+   -webkit-font-smoothing: antialiased !important;
  }
 
  h1, h2, h3, h4, h5, h6, p {
@@ -23,6 +24,11 @@ export default createGlobalStyle`
 
    .color-footer-card {
       color: #333;
+
+      @media (max-width: 480px) {
+      font-size: 0.9rem;
+
+    }
    }
  }
 
@@ -51,19 +57,6 @@ export default createGlobalStyle`
 
 
 
- .strategy-name {
-
-
-
-   th {
-    background: #e1e1e1 !important;
-    text-transform: uppercase;
-    padding-left: 16px !important;
-    text-align: left;
-    color: #505152;
-   }
-
- }
 
 
 .legenda {
@@ -99,18 +92,43 @@ export default createGlobalStyle`
     border: solid 2px transparent;
     color: #fff;
 
-    display: block;
-
     height: 20px;
-    position: relative;
-
+    display: flex;
     width: 20px;
-    border-radius: 50% 50%;
+
+    border-radius: 50%;
 
     svg {
-      transform: rotate(101deg) translateX(-1px) translateY(-1px);
-      margin-top: -10px;
-      margin-left: -10px;
+      transform: rotate(90deg) translateX(-1px) translateY(-1px);
+      color: #fff;
+      text-align: center;
+      margin-left: -9px;
+      margin-top: -8px;
+      z-index: 999;
+      position: absolute;
     }
   }
+
+    @media (max-width: 480px) {
+      .hidden-small {
+        display: none !important;
+
+      }
+    }
+    @media (min-width: 481px) and (max-width:812px) {
+
+      .hidden-medium {
+        display: none !important;
+
+      }
+    }
+
+    @media (min-width: 813px) {
+
+      .hidden-large {
+        display: none !important;
+      }
+    }
+
+
 `;

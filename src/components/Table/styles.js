@@ -13,6 +13,7 @@ export const Funds = styled.div`
       padding-left: 16px !important;
     }
   }
+
   tbody th {
     background: #fff;
   }
@@ -34,8 +35,12 @@ export const Funds = styled.div`
     }
   }
 
-  .spinner svg {
-    animation: rotation 2s infinite linear;
+  .spinner {
+    position: absolute;
+    width: 94%;
+    svg {
+      animation: rotation 2s infinite linear;
+    }
   }
 
   @keyframes rotation {
@@ -47,6 +52,21 @@ export const Funds = styled.div`
     }
   }
 
+  .icon_quota {
+    display: block;
+    margin-top: 25px;
+  }
+
+  .strategy-name {
+    th {
+      background: #e1e1e1 !important;
+      text-transform: uppercase;
+      padding-left: 16px !important;
+      text-align: left;
+      color: #505152;
+    }
+  }
+
   .strategy-funds {
     th {
       background: #f4f5f7 !important;
@@ -55,11 +75,6 @@ export const Funds = styled.div`
       color: #505152;
     }
   }
-  .icon_quota {
-    display: block;
-    margin-top: 25px;
-  }
-
   .fund-name-cell {
     width: 35%;
     padding: 16px 5px 16px 15px !important;
@@ -157,6 +172,129 @@ export const Funds = styled.div`
       svg {
         margin-left: 8px;
       }
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    table {
+      width: 100%;
+    }
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+      display: inline-block;
+    }
+
+    .strategy-name,
+    .strategy-funds {
+      width: 100%;
+      th {
+        width: 100%;
+      }
+    }
+
+    .fund-name-cell {
+      width: 95%;
+
+      .fund-risk-cell {
+        & > div {
+          width: 25px;
+          height: 25px;
+          left: none;
+          position: relative;
+          border-radius: 50%;
+          margin-right: 10px;
+          margin-top: 10px;
+        }
+      }
+
+      .fund-icons {
+        svg {
+          margin-left: 8px;
+        }
+      }
+    }
+
+    .fund {
+      width: 100%;
+      td {
+        border: none;
+
+        position: relative;
+        padding-left: 50%;
+        width: 100%;
+      }
+
+      td:before {
+        position: absolute;
+        top: 6px;
+        left: 8px;
+        text-align: left;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        font-size: 12px;
+      }
+      td:nth-of-type(2):before {
+        content: 'Data da cota:';
+      }
+      td:nth-of-type(3):before {
+        content: 'Mes (%):';
+      }
+      td:nth-of-type(4):before {
+        content: '2016 (%):';
+      }
+      td:nth-of-type(5):before {
+        content: '12 M (%):';
+      }
+      td:nth-of-type(6):before {
+        content: 'Aplicação mínima (R$):';
+      }
+      td:nth-of-type(7):before {
+        content: 'Prazo do resgate';
+      }
+
+      .icon_quota {
+        margin-top: 0px;
+      }
+
+      td:nth-of-type(8) {
+        padding-left: 8px;
+
+        .button-apply {
+          width: 40%;
+          border-radius: 4px;
+          height: auto;
+          text-transform: uppercase;
+          display: block;
+
+          @media only screen and (max-width: 480px) {
+            width: 100%;
+          }
+
+          span {
+            font-size: 1rem;
+            margin-right: 20px;
+          }
+          svg {
+            background: #fff;
+            color: #119c9f;
+            border-radius: 50%;
+            margin-top: 0px;
+          }
+        }
+
+        &:before {
+          width: 0%;
+        }
+      }
+    }
+
+    .fund-detail {
+      padding-top: 5px;
     }
   }
 `;

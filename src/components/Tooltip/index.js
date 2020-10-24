@@ -1,8 +1,8 @@
 import { Container } from './styles';
 
-function Tooltip({ title, children, dark = true }) {
+function Tooltip({ title, children, dark = true, ...rest }) {
   return (
-    <Container dark={dark}>
+    <Container dark={dark} {...rest}>
       <React.Fragment>
         {children}
 
