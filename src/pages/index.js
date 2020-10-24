@@ -94,12 +94,12 @@ export default function Home({ data }) {
       </HeaderContainer>
       <div className="grid-container">
         <div className="grid-x grid-margin-x grid-padding-y">
-          <div className="medium-9 cell">
+          <div className="small-12 medium-12 large-9 cell">
             <div className="card">
               <div className="grid-x">
-                <div className="medium-12 cell">
+                <div className="small-12 medium-12 cell">
                   <div className="grid-x">
-                    <div className=" medium-7 large-7 cell">
+                    <div className="small-12 medium-7 large-7 cell">
                       <div className="input-group search">
                         <input
                           className="input-group-field search"
@@ -111,7 +111,7 @@ export default function Home({ data }) {
                       </div>
                     </div>
                   </div>
-                  <div className="grid-x grid-margin-x">
+                  <div className="grid-x grid-margin-x hidden-small">
                     <div className="medium-4 cell">
                       <Ranger
                         title="Aplicação mínima"
@@ -149,7 +149,7 @@ export default function Home({ data }) {
             <TableContainer data={funds} />
             <Legend />
           </div>
-          <div className="medium-3 cell">
+          <div className="small-12 medium-3 cell hidden-small hidden-medium">
             <Accordion
               title={
                 <>

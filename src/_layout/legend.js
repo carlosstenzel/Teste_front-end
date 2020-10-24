@@ -8,8 +8,8 @@ import {
 
 export default function Legend() {
   return (
-    <div className="grid-x">
-      <div className="medium-5 cell">
+    <div className="grid-x hidden-small">
+      <div className="medium-12 large-5 cell">
         <div className="card legenda">
           <h6>Legenda</h6>
 

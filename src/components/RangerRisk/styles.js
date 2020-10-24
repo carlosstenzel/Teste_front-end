@@ -4,6 +4,7 @@ export const Label = styled.label`
   color: #444;
   font-weight: bold;
   margin-bottom: 15px;
+  text-align: center;
 `;
 
 export const Container = styled.div`

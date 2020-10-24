@@ -8,10 +8,10 @@ function RangerRisk({ title, ...rest }) {
 
         <div className="rating">
           <div className="grid-x">
-            <div className="medium-2 cell">
+            <div className="small-2 medium-2 cell">
               <span>menor</span>
             </div>
-            <div className="medium-8 ranking">
+            <div className="small-8 medium-8 ranking">
               <datalist id="custom-list">
                 <option value="1"></option>
                 <option value="2"></option>
@@ -36,7 +36,7 @@ function RangerRisk({ title, ...rest }) {
                 {...rest}
               />
             </div>
-            <div className="medium-2 cell">
+            <div className="small-2 medium-2 cell">
               <span>maior</span>
             </div>
           </div>

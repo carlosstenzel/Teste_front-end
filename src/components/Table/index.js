@@ -12,13 +12,19 @@ import {
 import Tooltip from '../Tooltip';
 import { FaSpinner } from 'react-icons/fa';
 
+function formateDate(dateFormat) {
+  const data = new Date(dateFormat);
+
+  return data.toLocaleDateString('pt-BR');
+}
+
 export function TableContainer({ data }) {
   const funds = data;
 
   return (
     <Funds className="card">
       <table>
-        <thead>
+        <thead className="hidden-small hidden-medium">
           <tr>
             <th>Fundo</th>
             <th>Data da cota</th>
@@ -34,14 +40,16 @@ export function TableContainer({ data }) {
           {funds === null ? (
             <tr className="strategy-funds nonefunds spinner">
               <th colSpan="8">
-                <FaSpinner size={38} color="#444" />
+                <h5>
+                  <FaSpinner size={38} color="#444" />
+                </h5>
               </th>
             </tr>
           ) : funds.length > 0 ? (
             funds.map((nameFunds, index) => {
               return (
                 <React.Fragment key={index}>
-                  <tr className="strategy-name">
+                  <tr className="strategy-name ">
                     <th colSpan="8">{nameFunds.nameMacro}</th>
                   </tr>
                   {Object.keys(nameFunds.filterFundClass).map((item) => (
@@ -86,7 +94,7 @@ export function TableChildren({ data, nameMacro, nameMacroSub }) {
   const ObjFunds = data;
 
   const [setActive, setActiveState] = useState(false);
-  const [setHeight, setHeightState] = useState('0px');
+  const [, setHeightState] = useState('0px');
 
   const content = useRef(null);
 
@@ -126,7 +134,7 @@ export function TableChildren({ data, nameMacro, nameMacroSub }) {
             </span>
           </p>
         </td>
-        <td className="text-center">{ObjFunds.quota_date}</td>
+        <td className="text-center">{formateDate(ObjFunds.quota_date)}</td>
         <td className="text-center">
           {(ObjFunds.profitabilities.month * 100).toFixed(2)}
         </td>
@@ -147,15 +155,20 @@ export function TableChildren({ data, nameMacro, nameMacroSub }) {
         </td>
         <td className="text-center icon_quota">
           <Tooltip
+            className="hidden-small hidden-medium"
             title={ObjFunds.operability.retrieval_quotation_days_str}
             dark={false}
           >
             <MdInfoOutline color="#444" size={20} />
           </Tooltip>
+          <span className="hidden-large">
+            {ObjFunds.operability.retrieval_quotation_days_str}
+          </span>
         </td>
         <td className="text-center">
           {!ObjFunds.is_closed_to_capture ? (
             <button className="button small button-apply" type="button">
+              <span className="hidden-large"> Aplicar </span>
               <MdReply size={20} />
             </button>
           ) : (
@@ -168,6 +181,7 @@ export function TableChildren({ data, nameMacro, nameMacroSub }) {
         ref={content}
         style={{
           visibility: `${setActive ? 'visible' : 'collapse'}`,
+          display: `${setActive ? 'block' : 'none'}`,
         }}
       >
         <td colSpan="9">
