@@ -21,9 +21,8 @@ export default function useFundsServices() {
   useEffect(() => {
     async function fetchData() {
       setFunds(formatFundsData(data));
-      delayedQuery(() => {
-        setiIsLoading(false);
-      }, []);
+
+      setiIsLoading(false);
     }
     fetchData();
   }, []);
