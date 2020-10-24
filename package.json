@@ -13,9 +13,14 @@
         "start": "next start"
     },
     "dependencies": {
+        "axios": "^0.20.0",
+        "json-groupby": "^1.1.0",
+        "lodash": "^4.17.20",
+        "micro-cors": "^0.1.1",
         "next": "9.5.5",
         "react": "16.14.0",
         "react-dom": "16.14.0",
+        "react-icons": "^3.11.0",
         "styled-components": "^5.2.0"
     },
     "devDependencies": {
