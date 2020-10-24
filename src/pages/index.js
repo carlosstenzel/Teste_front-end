@@ -12,12 +12,16 @@ import FilterRendaFixa from '../_layout/filterRendaFixa';
 
 import formatFundsData from '../utils/formatFundsData';
 
-export default function Home({ data }) {
+export default function Home() {
   const [funds, setFunds] = useState(null);
 
   useEffect(() => {
-    setFunds(formatFundsData(data));
-  }, [data]);
+    fetch(
+      'https://s3.amazonaws.com/orama-media/json/fund_detail_full.json?limit=1000&offset=0&serializer=fund_detail_full'
+    )
+      .then((res) => res.json())
+      .then((data) => setFunds(formatFundsData(data)));
+  }, []);
 
   const handleSearch = (name) => {
     setFunds(
@@ -141,17 +145,19 @@ export default function Home({ data }) {
     </>
   );
 }
-
+/*
 export async function getStaticProps() {
   const res = await fetch(
     'https://s3.amazonaws.com/orama-media/json/fund_detail_full.json?limit=1000&offset=0&serializer=fund_detail_full'
   );
+
   const funds = await res.json();
 
   return {
     props: {
       data: funds,
     },
-    revalidate: 1, // In seconds
+    revalidate: 5, // In seconds
   };
 }
+*/
