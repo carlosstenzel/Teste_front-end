@@ -135,7 +135,9 @@ export default function Home({ data }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch(`${process.env.API_URL}funds`);
+  const res = await fetch(
+    'https://s3.amazonaws.com/orama-media/json/fund_detail_full.json?limit=1000&offset=0&serializer=fund_detail_full'
+  );
   const funds = await res.json();
 
   return {
