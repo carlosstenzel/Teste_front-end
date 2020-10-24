@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Funds } from './styles';
+
 import {
-  MdCheckCircle,
   MdReply,
   MdStars,
   MdHelpOutline,
@@ -10,13 +10,12 @@ import {
 } from 'react-icons/md';
 
 import Tooltip from '../Tooltip';
-import { FaSpinner } from 'react-icons/fa';
+import SpinnerTable from '../../_layout/spinnerTable';
+import NotFoundFund from '../../_layout/notFoundFund';
 
-function formateDate(dateFormat) {
-  const data = new Date(dateFormat);
-
-  return data.toLocaleDateString('pt-BR');
-}
+import formateDate from '../../utils/formateDate';
+import formateAmout from '../../utils/formateAmout';
+import DetailsFund from './detailsFund';
 
 export function TableContainer({ data }) {
   const funds = data;
@@ -38,13 +37,7 @@ export function TableContainer({ data }) {
         </thead>
         <tbody>
           {funds === null ? (
-            <tr className="strategy-funds nonefunds spinner">
-              <th colSpan="8">
-                <h5>
-                  <FaSpinner size={38} color="#444" />
-                </h5>
-              </th>
-            </tr>
+            <SpinnerTable />
           ) : funds.length > 0 ? (
             funds.map((nameFunds, index) => {
               return (
@@ -78,11 +71,7 @@ export function TableContainer({ data }) {
               );
             })
           ) : (
-            <tr className="strategy-funds nonefunds spinner">
-              <th colSpan="8">
-                <h5>Nenhum fundo de investimento encontrado</h5>
-              </th>
-            </tr>
+            <NotFoundFund />
           )}
         </tbody>
       </table>
@@ -120,14 +109,6 @@ export function TableChildren({ data, nameMacro, nameMacroSub }) {
                 <MdStars color="#639d31" size={16} />
               </Tooltip>
             ) : null}
-            {/**
-
-                 <MdCheckCircle
-                color="#9c9d9e"
-                size={16}
-                data-title="Você já investe neste fundo."
-              />
-                 */}
 
             <span className="fund-type">
               {nameMacro} | {nameMacroSub}
@@ -145,13 +126,9 @@ export function TableChildren({ data, nameMacro, nameMacroSub }) {
           {(ObjFunds.profitabilities.m12 * 100).toFixed(2)}
         </td>
         <td className="text-center">
-          {parseFloat(
+          {formateAmout(
             ObjFunds.operability.minimum_initial_application_amount
-          ).toLocaleString('pt-br', {
-            minimumFractionDigits: 2,
-            style: 'currency',
-            currency: 'BRL',
-          })}
+          )}
         </td>
         <td className="text-center icon_quota">
           <Tooltip
@@ -181,62 +158,15 @@ export function TableChildren({ data, nameMacro, nameMacroSub }) {
         ref={content}
         style={{
           visibility: `${setActive ? 'visible' : 'collapse'}`,
-          display: `${setActive ? 'block' : 'none'}`,
+          display: `${setActive ? 'contents' : 'none'}`,
         }}
       >
-        <td colSpan="9">
+        <td colSpan="8">
           <div className="grid-container">
             <div className="grid-x">
-              <div className="medium-6 small-12 cell"></div>
-              <div className="medium-6 small-12 cell">
-                <ul>
-                  <li>
-                    <strong>Cotização da aplicação:</strong>
-                    {ObjFunds.operability.application_quotation_days_str}
-                    <Tooltip
-                      title="Total de dias para que o valor aplicado
-                            seja convertido em cotas do fundo."
-                    >
-                      <MdHelpOutline color="#9c9d9e" size={16} />
-                    </Tooltip>
-                  </li>
-                  <li>
-                    <strong>Cotização do resgate:</strong>
-                    {ObjFunds.operability.retrieval_quotation_days_str}
-                    <Tooltip
-                      title="Total de dias para que as cotas do fundo
-                      sejam transformadas em valor monetário."
-                    >
-                      <MdHelpOutline color="#9c9d9e" size={16} />
-                    </Tooltip>
-                  </li>
-                  <li>
-                    <strong>Liquidação do resgate:</strong>
-                    {ObjFunds.operability.retrieval_liquidation_days_str}
-                    <Tooltip
-                      title="Total de dias após a conversão para que o
-                      valor do resgate esteja disponível em sua
-                      Subconta Órama."
-                    >
-                      <MdHelpOutline color="#9c9d9e" size={16} />
-                    </Tooltip>
-                  </li>
-                  <li>
-                    <strong>Taxa de administração:</strong>{' '}
-                    {ObjFunds.fees.administration_fee}
-                  </li>
-                </ul>
-                <p className="fund-link">
-                  <a
-                    href={`https://www.orama.com.br/investimentos/fundos-de-investimento/${ObjFunds.slug}`}
-                    target="_bank"
-                  >
-                    Conheça mais informações sobre este fundo
-                  </a>
-                </p>
-                <p className="fund-cnpj">
-                  <strong>CNPJ do fundo:</strong> {ObjFunds.cnpj}
-                </p>
+              <div className="small-12 medium-6 large-6  cell"></div>
+              <div className="small-12 medium-6 large-6  cell">
+                <DetailsFund fund={ObjFunds} />
               </div>
             </div>
           </div>

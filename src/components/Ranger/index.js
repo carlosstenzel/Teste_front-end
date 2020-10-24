@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Input, Label, Container } from './styles';
+
 import { Amount, daysRetrievel } from './rangeData';
+import formateAmout from '../../utils/formateAmout';
 
 function Ranger({
   title,
@@ -20,13 +22,7 @@ function Ranger({
   }
 
   function CalcAmount(index) {
-    setValueRange(
-      Amount[index].toLocaleString('pt-br', {
-        minimumFractionDigits: 2,
-        style: 'currency',
-        currency: 'BRL',
-      })
-    );
+    setValueRange(formateAmout(Amount[index]));
   }
 
   return (

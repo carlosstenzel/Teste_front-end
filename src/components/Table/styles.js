@@ -35,23 +35,6 @@ export const Funds = styled.div`
     }
   }
 
-  .spinner {
-    position: absolute;
-    width: 94%;
-    svg {
-      animation: rotation 2s infinite linear;
-    }
-  }
-
-  @keyframes rotation {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(359deg);
-    }
-  }
-
   .icon_quota {
     display: block;
     margin-top: 25px;
@@ -148,31 +131,6 @@ export const Funds = styled.div`
     overflow: hidden;
     transition: visibility 0.3s ease;
     visibility: collapse;
-
-    ul {
-      list-style: none;
-      margin: 0;
-      margin-top: 4rem;
-    }
-
-    .fund-link {
-      margin-top: 30px;
-      text-decoration: underline;
-      margin-bottom: 60px;
-
-      a {
-        color: #444;
-      }
-    }
-
-    li {
-      strong {
-        margin-right: 8px;
-      }
-      svg {
-        margin-left: 8px;
-      }
-    }
   }
 
   @media only screen and (max-width: 768px) {
