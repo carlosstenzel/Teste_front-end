@@ -1,4 +1,20 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Lista de Fundos de Investimento
+
+Projeto desenvolvido para listar os fundos de investimentos separando os mesmos por macro, com opção de de filtrar como:
+
+- Pesquisa por nome :white_check_mark:
+- Aplicação mínima :white_check_mark:
+- Perfil de risco do fundo :white_check_mark:
+- Prazo de resgate :white_check_mark:
+- Filtro por Renda Fixa
+
+Foi utlizado no desenvolvimento:
+
+- [Next.js](https://nextjs.org/)
+- foundation-sites@6.6.3 (css)
+- styled-components
+- react-icons
+- [SWR](https://swr.vercel.app/)
 
 ## Getting Started
 

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   padding: 100px 0px;
-  background: url(/assets/bg.jpg) no-repeat center top;
+  background: url('/assets/bg.jpg') no-repeat center top;
 
   color: #fff;
 
