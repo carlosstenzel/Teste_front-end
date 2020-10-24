@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { useEffect, useState } from 'react';
 
 import Ranger from '../components/Ranger';
@@ -66,6 +67,13 @@ export default function Home({ data }) {
 
   return (
     <>
+      <Head>
+        <title>Lista de Fundos de Investimento | Órama Investimentos</title>
+        <meta
+          name="description"
+          content="Conheça a lista de fundos disponíveis na Órama Investimentos. Renda fixa, variável e estratégias diferenciadas."
+        />
+      </Head>
       <HeaderContainer />
 
       <div className="grid-container">
