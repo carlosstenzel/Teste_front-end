@@ -16,16 +16,16 @@ export default function useFundsServices() {
     _.debounce((fn, q) => fn(q), 300),
     []
   );
+
   const { data } = useFecthFunds();
 
   useEffect(() => {
-    async function fetchData() {
+    function fetchData() {
       setFunds(formatFundsData(data));
-
       setiIsLoading(false);
     }
     fetchData();
-  }, []);
+  }, [data]);
 
   const handleSearch = (name) => {
     delayedQuery((name) => {

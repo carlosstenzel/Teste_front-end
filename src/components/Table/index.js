@@ -13,7 +13,7 @@ import DetailsFund from './detailsFund';
 
 export function TableContainer({ data }) {
   const funds = data;
-
+  console.log(funds);
   return (
     <Funds className="card">
       <table>

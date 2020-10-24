@@ -1,6 +1,6 @@
 import { Ranger, RangerRisk, TableContainer } from '../components';
 
-import { Legend, HeaderContainer, FilterRendaFixa, Loading } from '../_layout';
+import { HeaderContainer, Legend, FilterRendaFixa, Loading } from '../_layout';
 
 import useFundsServices from '../hooks/useFundsServices';
 
