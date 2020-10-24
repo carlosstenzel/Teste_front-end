@@ -1,79 +1,25 @@
-import Head from 'next/head';
-import { useEffect, useState } from 'react';
+import { Ranger, RangerRisk, TableContainer } from '../components';
 
-import Ranger from '../components/Ranger';
-import { Amount, daysRetrievel } from '../components/Ranger/rangeData';
-import RangerRisk from '../components/RangerRisk';
-import { TableContainer } from '../components/Table';
+import { HeaderContainer, Legend, FilterRendaFixa, Loading } from '../_layout';
 
-import Legend from '../_layout/legend';
-import HeaderContainer from '../_layout/headerContainer';
-import FilterRendaFixa from '../_layout/filterRendaFixa';
+import useFundsServices from '../hooks/useFundsServices';
 
-import formatFundsData from '../utils/formatFundsData';
+export default function Home() {
+  const [
+    handleSearch,
+    handleChangeRisk,
+    handleChangeDays,
+    handleChangeMinAmount,
+    funds,
+    isLoading,
+  ] = useFundsServices();
 
-export default function Home({ data }) {
-  const [funds, setFunds] = useState(null);
-
-  useEffect(() => {
-    setFunds(formatFundsData(data));
-  }, [data]);
-
-  const handleSearch = (name) => {
-    setFunds(
-      formatFundsData(
-        data.filter((re) =>
-          re.simple_name.toLowerCase().includes(name.toLowerCase())
-        )
-      )
-    );
-  };
-
-  const handleChangeRisk = (numberRisk) => {
-    setFunds(
-      formatFundsData(
-        data.filter(
-          (re) =>
-            re.specification.fund_risk_profile.score_range_order ===
-            parseInt(numberRisk)
-        )
-      )
-    );
-  };
-
-  const handleChangeDays = (days) => {
-    setFunds(
-      formatFundsData(
-        data.filter(
-          (re) =>
-            re.operability.retrieval_quotation_days <=
-            daysRetrievel[parseInt(days)]
-        )
-      )
-    );
-  };
-
-  const handleChangeMinAmount = (amount) => {
-    setFunds(
-      formatFundsData(
-        data.filter(
-          (re) =>
-            re.operability.minimum_initial_application_amount <=
-            Amount[parseInt(amount)]
-        )
-      )
-    );
-  };
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <>
-      <Head>
-        <title>Lista de Fundos de Investimento | Órama Investimentos</title>
-        <meta
-          name="description"
-          content="Conheça a lista de fundos disponíveis na Órama Investimentos. Renda fixa, variável e estratégias diferenciadas."
-        />
-      </Head>
       <HeaderContainer />
 
       <div className="grid-container">
@@ -140,18 +86,4 @@ export default function Home({ data }) {
       </div>
     </>
   );
-}
-
-export async function getStaticProps() {
-  const res = await fetch(
-    'https://s3.amazonaws.com/orama-media/json/fund_detail_full.json?limit=1000&offset=0&serializer=fund_detail_full'
-  );
-  const funds = await res.json();
-
-  return {
-    props: {
-      data: funds,
-    },
-    revalidate: 1, // In seconds
-  };
 }

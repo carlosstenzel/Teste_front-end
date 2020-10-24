@@ -1,25 +1,19 @@
 import React, { useRef, useState } from 'react';
 import { Funds } from './styles';
 
-import {
-  MdReply,
-  MdStars,
-  MdHelpOutline,
-  MdInfoOutline,
-  MdBlock,
-} from 'react-icons/md';
+import { MdReply, MdStars, MdInfoOutline, MdBlock } from 'react-icons/md';
 
 import Tooltip from '../Tooltip';
-import SpinnerTable from '../../_layout/spinnerTable';
-import NotFoundFund from '../../_layout/notFoundFund';
 
-import formateDate from '../../utils/formateDate';
-import formateAmout from '../../utils/formateAmout';
+import { SpinnerTable, NotFoundFund } from '../../_layout';
+
+import { formateDate, formateAmout } from '../../utils';
+
 import DetailsFund from './detailsFund';
 
 export function TableContainer({ data }) {
   const funds = data;
-
+  console.log(funds);
   return (
     <Funds className="card">
       <table>
