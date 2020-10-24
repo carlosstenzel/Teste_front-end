@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Input, Label, Container } from './styles';
 
 import { Amount, daysRetrievel } from './rangeData';
-import formateAmout from '../../utils/formateAmout';
+import { formateAmout } from '../../utils';
 
 function Ranger({
   title,

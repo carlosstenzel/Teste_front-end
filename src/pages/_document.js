@@ -33,12 +33,6 @@ export default class MyDocument extends Document {
       <Html lang="pt-BR">
         <Head>
           <meta charSet="utl-8" />
-          <meta name="viewport" content="width=device-width" />
-          <title>Lista de Fundos de Investimento | Órama Investimentos</title>
-          <meta
-            name="description"
-            content="Conheça a lista de fundos disponíveis na Órama Investimentos. Renda fixa, variável e estratégias diferenciadas."
-          />
 
           <link
             rel="shortcut icon"
@@ -49,6 +43,7 @@ export default class MyDocument extends Document {
             href="https://www.orama.com.br/static/img/favicon.png"
             type="image/x-icon"
           />
+
           <link
             href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap"
             rel="stylesheet"
