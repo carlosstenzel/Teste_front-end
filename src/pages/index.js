@@ -1,6 +1,11 @@
-import { Ranger, RangerRisk, TableContainer } from '../components';
+import {
+  Ranger,
+  RangerRisk,
+  TableContainer,
+  FilterRendaFixa,
+} from '../components';
 
-import { HeaderContainer, Legend, FilterRendaFixa, Loading } from '../_layout';
+import { HeaderContainer, Legend, Loading } from '../_layout';
 
 import useFundsServices from '../hooks/useFundsServices';
 
@@ -10,6 +15,7 @@ export default function Home() {
     handleChangeRisk,
     handleChangeDays,
     handleChangeMinAmount,
+    filterFundsPerMacro,
     funds,
     isLoading,
     isSearch,
@@ -81,7 +87,7 @@ export default function Home() {
             <Legend />
           </div>
           <div className="small-12 medium-3 cell hidden-small hidden-medium">
-            <FilterRendaFixa />
+            <FilterRendaFixa handlerFilter={filterFundsPerMacro} />
           </div>
         </div>
       </div>

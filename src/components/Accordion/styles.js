@@ -8,7 +8,7 @@ export const Section = styled.div`
 export const Button = styled.button`
   background-color: #fff;
   color: #444;
-  cursor: pointer;
+
   padding: 11px 28px 0px 20px;
   display: flex;
   align-items: center;
@@ -32,6 +32,7 @@ export const Icon = styled.div`
   margin-left: auto;
   margin-top: -10px;
   transition: transform 0.6s ease;
+  cursor: pointer;
 `;
 
 export const Content = styled.div`

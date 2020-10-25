@@ -16,6 +16,8 @@ export default function useFundsServices() {
   const [filterDays, setFilterDays] = useState(null);
   const [filterMinimumAmount, setFilterMinimumAmount] = useState(null);
 
+  const [dataFunds, setDataFunds] = useState();
+
   const delayedQuery = useCallback(
     _.debounce((fn, q) => fn(q), 300),
     []
@@ -36,12 +38,13 @@ export default function useFundsServices() {
         filteredData = filterPerMinAmount(filteredData);
       }
       if (filteredData) {
+        setDataFunds(filteredData);
         return delayedQuery(() => {
           setFunds(formatFundsData(filteredData));
         });
       }
     }
-
+    setDataFunds(data);
     setFunds(formatFundsData(data));
     setiIsLoading(false);
   }, [filterRisk, filterDays, filterMinimumAmount, data]);
@@ -94,11 +97,42 @@ export default function useFundsServices() {
         Amount[parseInt(filterMinimumAmount)]
     );
 
+  const filterFundsPerMacro = (macro) => {
+    delayedQuery((macro) => {
+      if (macro.checkAll) {
+        return setFunds(
+          formatFundsData(dataFunds).filter(
+            (fund) => fund.nameMacro === 'Renda Fixa'
+          )
+        );
+      }
+
+      const selectedMacros = macro.selectedFilters
+        .filter((filter) => filter.isChecked)
+        .map((filter) => filter.id);
+
+      if (selectedMacros?.length > 0) {
+        let filteredData = dataFunds;
+
+        selectedMacros.map((submacro) => {
+          filteredData = dataFunds.filter(
+            (re) => (re.specification.fund_main_strategy.name = submacro)
+          );
+        });
+
+        return setFunds(formatFundsData(filteredData));
+      }
+
+      setFunds(formatFundsData(dataFunds));
+    }, macro);
+  };
+
   return [
     handleSearch,
     handleChangeRisk,
     handleChangeDays,
     handleChangeMinAmount,
+    filterFundsPerMacro,
     funds,
     isLoading,
     isSearch,

@@ -1,4 +1,3 @@
-export { default as FilterRendaFixa } from './filterRendaFixa';
 export { default as HeaderContainer } from './headerContainer';
 export { default as Legend } from './legend';
 export { default as Loading } from './loading';
