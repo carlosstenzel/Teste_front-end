@@ -8,10 +8,6 @@ export const Funds = styled.div`
     background: #fff;
     border: none;
     color: #444;
-
-    th {
-      padding-left: 16px !important;
-    }
   }
 
   tbody th {
