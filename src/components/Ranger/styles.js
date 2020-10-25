@@ -5,41 +5,77 @@ export const Input = styled.input`
   cursor: pointer;
   height: 4px;
   width: 100%;
+  -webkit-appearance: none;
+  background-color: transparent;
 
   &:focus {
     outline: none;
   }
 
-  &::-webkit-slider-thumb {
-    width: 10px;
-    height: 10px;
-    background: #eee;
-    border: 4px solid #444;
-    margin-top: 3px;
+  &::-webkit-slider-runnable-track {
     background: #119c9f;
+    border: 0;
+    border-radius: 1.3px;
+    width: 100%;
+    height: 4px;
+    cursor: pointer;
+  }
+  &::-webkit-slider-thumb {
+    margin-top: -7px;
+    width: 18px;
+    height: 18px;
+    background: #ffffff;
+    border: 4px solid #444444;
+    border-radius: 50px;
     cursor: pointer;
     -webkit-appearance: none;
   }
-
+  &:focus::-webkit-slider-runnable-track {
+    background: #119c9f;
+  }
+  &::-moz-range-track {
+    background: #119c9f;
+    border: 0;
+    border-radius: 1.3px;
+    width: 100%;
+    height: 4px;
+    cursor: pointer;
+  }
   &::-moz-range-thumb {
     width: 10px;
     height: 10px;
-    background: #eee;
-    border: 4px solid #444;
-    border-radius: 50%;
-
+    background: #ffffff;
+    border: 4px solid #444444;
+    border-radius: 50px;
     cursor: pointer;
   }
-
+  &::-ms-track {
+    background: transparent;
+    border-color: transparent;
+    border-width: 8px 0;
+    color: transparent;
+    width: 100%;
+    height: 4px;
+    cursor: pointer;
+  }
+  &::-ms-fill-lower {
+    background: #119c9f;
+    border: 0;
+    border-radius: 2.6px;
+  }
+  &::-ms-fill-upper {
+    background: #119c9f;
+    border: 0;
+    border-radius: 2.6px;
+  }
   &::-ms-thumb {
-    width: 10px;
-    height: 10px;
-    background: #eee;
-    border: 4px solid #444;
-    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    background: #ffffff;
+    border: 4px solid #444444;
+    border-radius: 50px;
     cursor: pointer;
     margin-top: 0px;
-    /*Needed to keep the Edge thumb centred*/
   }
 
   // Firefox

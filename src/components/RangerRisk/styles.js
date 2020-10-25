@@ -22,12 +22,20 @@ export const Container = styled.div`
     margin-top: -33px;
     background: transparent;
     height: 85px;
+    -webkit-appearance: none;
+    background-color: transparent;
+    -webkit-margin-before: -50px !important;
+    z-index: 9999;
+    position: relative;
   }
 
   input[type='range']:focus {
     outline: none;
   }
-
+  input[type='range']::-webkit-slider-runnable-track {
+    border-bottom: 1px solid #444;
+    height: 70px;
+  }
   input[type='range']::-webkit-slider-thumb {
     width: 0;
     height: 0;
@@ -36,6 +44,8 @@ export const Container = styled.div`
     border-color: transparent transparent #444 transparent;
     cursor: pointer;
     -webkit-appearance: none;
+    padding-top: 60px;
+    z-index: 9999;
   }
 
   input[type='range']::-moz-range-thumb {
@@ -56,7 +66,17 @@ export const Container = styled.div`
     border-color: transparent transparent #444 transparent;
     cursor: pointer;
     margin-top: 0px;
+
     /*Needed to keep the Edge thumb centred*/
+  }
+
+  &::-webkit-slider-runnable-track {
+    background: #119c9f;
+    border: 0;
+    border-radius: 1.3px;
+    width: 100%;
+    height: 4px;
+    cursor: pointer;
   }
 
   // Firefox
@@ -84,6 +104,7 @@ export const Container = styled.div`
     display: flex;
     justify-content: space-between;
     padding-right: 4px;
+    -webkit-margin-before: -14px;
   }
 
   #custom-list option {
