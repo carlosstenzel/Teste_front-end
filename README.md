@@ -15,6 +15,7 @@ Foi utlizado no desenvolvimento:
 - styled-components
 - react-icons
 - [SWR](https://swr.vercel.app/)
+- react-lazyload
 
 ## Getting Started
 

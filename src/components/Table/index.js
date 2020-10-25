@@ -43,9 +43,9 @@ export function TableContainer({ data }) {
                     </tr>
                     {Object.keys(nameFunds.filterFundClass).map((item) => (
                       <React.Fragment key={item}>
-                        <tr className="strategy-funds">
+                        <AlterLazyLoad key={item} className="strategy-funds">
                           <th colSpan="8">{item}</th>
-                        </tr>
+                        </AlterLazyLoad>
                         {Object.keys(item).map((li) => {
                           var ObjFunds = nameFunds.filterFundClass[item][li];
 

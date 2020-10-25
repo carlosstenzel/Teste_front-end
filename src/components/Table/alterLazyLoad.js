@@ -9,10 +9,16 @@ class AlterLazyLoad extends LazyLoad {
       classNamePrefix,
       style,
       onClick,
+      className,
     } = this.props;
 
     return (
-      <tr className="fund" ref={this.setRef} style={style} onClick={onClick}>
+      <tr
+        className={`fund ${className}`}
+        ref={this.setRef}
+        style={style}
+        onClick={onClick}
+      >
         {this.visible ? children : placeholder ? placeholder : null}
       </tr>
     );
