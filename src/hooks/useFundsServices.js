@@ -9,8 +9,12 @@ import { formatFundsData } from '../utils';
 
 export default function useFundsServices() {
   const [isLoading, setiIsLoading] = useState(true);
+  const [isSearch, setiIsSeach] = useState(false);
 
   const [funds, setFunds] = useState(null);
+  const [filterRisk, setFilterRisk] = useState(null);
+  const [filterDays, setFilterDays] = useState(null);
+  const [filterMinimumAmount, setFilterMinimumAmount] = useState(null);
 
   const delayedQuery = useCallback(
     _.debounce((fn, q) => fn(q), 300),
@@ -20,13 +24,40 @@ export default function useFundsServices() {
   const { data } = useFecthFunds();
 
   useEffect(() => {
-    function fetchData() {
-      setFunds(formatFundsData(data));
-
-      setiIsLoading(false);
+    setiIsSeach(true);
+    if (data) {
+      let filteredData = data;
+      if (filterRisk) {
+        filteredData = filterPerRisk(filteredData);
+      }
+      if (filterDays) {
+        filteredData = filterPerDays(filteredData);
+      }
+      if (filterMinimumAmount) {
+        filteredData = filterPerMinAmount(filteredData);
+      }
+      if (filteredData) {
+        return delayedQuery(() => {
+          setFunds(formatFundsData(filteredData));
+        });
+      }
     }
-    fetchData();
-  }, [data]);
+
+    setFunds(formatFundsData(data));
+    setiIsLoading(false);
+  }, [filterRisk, filterDays, filterMinimumAmount, data]);
+
+  const handleChangeRisk = (numberRisk) => {
+    setFilterRisk(numberRisk);
+  };
+
+  const handleChangeDays = (days) => {
+    setFilterDays(days);
+  };
+
+  const handleChangeMinAmount = (amount) => {
+    setFilterMinimumAmount(amount);
+  };
 
   const handleSearch = (name) => {
     delayedQuery((name) => {
@@ -40,47 +71,26 @@ export default function useFundsServices() {
     }, name);
   };
 
-  const handleChangeRisk = (numberRisk) => {
-    delayedQuery((numberRisk) => {
-      setFunds(
-        formatFundsData(
-          data.filter(
-            (re) =>
-              re.specification.fund_risk_profile.score_range_order ===
-              parseInt(numberRisk)
-          )
-        )
-      );
-    }, numberRisk);
-  };
+  const filterPerRisk = (filterData) =>
+    filterData.filter(
+      (re) =>
+        re.specification.fund_risk_profile.score_range_order ===
+        parseInt(filterRisk)
+    );
 
-  const handleChangeDays = (days) => {
-    delayedQuery((days) => {
-      setFunds(
-        formatFundsData(
-          data.filter(
-            (re) =>
-              re.operability.retrieval_quotation_days <=
-              daysRetrievel[parseInt(days)]
-          )
-        )
-      );
-    }, days);
-  };
+  const filterPerDays = (filterData) =>
+    filterData.filter(
+      (re) =>
+        re.operability.retrieval_quotation_days <=
+        daysRetrievel[parseInt(filterDays)]
+    );
 
-  const handleChangeMinAmount = (amount) => {
-    delayedQuery((amount) => {
-      setFunds(
-        formatFundsData(
-          data.filter(
-            (re) =>
-              re.operability.minimum_initial_application_amount <=
-              Amount[parseInt(amount)]
-          )
-        )
-      );
-    }, amount);
-  };
+  const filterPerMinAmount = (filterData) =>
+    filterData.filter(
+      (re) =>
+        re.operability.minimum_initial_application_amount <=
+        Amount[parseInt(filterMinimumAmount)]
+    );
 
   return [
     handleSearch,
@@ -89,5 +99,6 @@ export default function useFundsServices() {
     handleChangeMinAmount,
     funds,
     isLoading,
+    isSearch,
   ];
 }

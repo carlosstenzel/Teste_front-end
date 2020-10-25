@@ -12,6 +12,7 @@ export default function Home() {
     handleChangeMinAmount,
     funds,
     isLoading,
+    isSearch,
   ] = useFundsServices();
 
   if (isLoading) {
@@ -76,7 +77,7 @@ export default function Home() {
                 <small>Horário limite de aplicação 12:00</small>
               </p>
             </div>
-            <TableContainer data={funds} />
+            <TableContainer data={funds} search={isSearch} />
             <Legend />
           </div>
           <div className="small-12 medium-3 cell hidden-small hidden-medium">

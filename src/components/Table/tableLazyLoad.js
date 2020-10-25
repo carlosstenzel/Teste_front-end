@@ -1,6 +1,6 @@
 import LazyLoad from 'react-lazyload';
 
-class AlterLazyLoad extends LazyLoad {
+class TableLazyLoad extends LazyLoad {
   render() {
     const {
       height,
@@ -25,4 +25,4 @@ class AlterLazyLoad extends LazyLoad {
   }
 }
 
-export default AlterLazyLoad;
+export default TableLazyLoad;

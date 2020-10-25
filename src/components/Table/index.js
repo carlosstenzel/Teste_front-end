@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import AlterLazyLoad from './alterLazyLoad';
+import TableLazyLoad from './tableLazyLoad';
 
 import { Funds } from './styles';
 
@@ -13,7 +13,7 @@ import { formateDate, formateAmout } from '../../utils';
 
 import DetailsFund from './detailsFund';
 
-export function TableContainer({ data }) {
+export function TableContainer({ data, search }) {
   const funds = data;
   return (
     <Funds className="card">
@@ -43,9 +43,9 @@ export function TableContainer({ data }) {
                     </tr>
                     {Object.keys(nameFunds.filterFundClass).map((item) => (
                       <React.Fragment key={item}>
-                        <AlterLazyLoad key={item} className="strategy-funds">
+                        <TableLazyLoad key={item} className="strategy-funds">
                           <th colSpan="8">{item}</th>
-                        </AlterLazyLoad>
+                        </TableLazyLoad>
                         {Object.keys(item).map((li) => {
                           var ObjFunds = nameFunds.filterFundClass[item][li];
 
@@ -66,6 +66,8 @@ export function TableContainer({ data }) {
                   </React.Fragment>
                 );
               })
+            ) : !search ? (
+              <SpinnerTable />
             ) : (
               <NotFoundFund />
             )}
@@ -91,7 +93,7 @@ const TableChildren = ({ data, nameMacro, nameMacroSub }) => {
 
   return (
     <>
-      <AlterLazyLoad
+      <TableLazyLoad
         key={Object.id}
         onClick={toggleAccordion}
         placeholder={null}
@@ -155,7 +157,7 @@ const TableChildren = ({ data, nameMacro, nameMacroSub }) => {
             )}
           </td>
         </>
-      </AlterLazyLoad>
+      </TableLazyLoad>
       <tr
         className="fund-detail"
         ref={content}

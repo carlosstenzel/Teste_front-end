@@ -8,6 +8,8 @@ Projeto desenvolvido para listar os fundos de investimentos separando os mesmos 
 - Prazo de resgate :white_check_mark:
 - Filtro por Renda Fixa
 
+Foi feito alteração no modo de exibição dos fundo usado Lazy load para diminuir o carregamento.
+
 Foi utlizado no desenvolvimento:
 
 - [Next.js](https://nextjs.org/)
