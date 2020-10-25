@@ -24,8 +24,7 @@ export default function useFundsServices() {
   const { data } = useFecthFunds();
 
   useEffect(() => {
-    setiIsSeach(true);
-    if (data) {
+    if (isSearch) {
       let filteredData = data;
       if (filterRisk) {
         filteredData = filterPerRisk(filteredData);
@@ -49,14 +48,17 @@ export default function useFundsServices() {
 
   const handleChangeRisk = (numberRisk) => {
     setFilterRisk(numberRisk);
+    setiIsSeach(true);
   };
 
   const handleChangeDays = (days) => {
     setFilterDays(days);
+    setiIsSeach(true);
   };
 
   const handleChangeMinAmount = (amount) => {
     setFilterMinimumAmount(amount);
+    setiIsSeach(true);
   };
 
   const handleSearch = (name) => {
