@@ -17,13 +17,13 @@ function Accordion({ before = null, title, children }) {
 
   return (
     <Section>
-      <Button className={`${setActive}`} onClick={toggleAccordion}>
+      <Button className={`${setActive}`}>
         <Title>{title}</Title>
         <Icon>
           {setActive === 'active' ? (
-            <FaMinus width={10} fill={'#444'} />
+            <FaMinus width={10} fill={'#444'} onClick={toggleAccordion} />
           ) : (
-            <FaPlus width={10} fill={'#444'} />
+            <FaPlus width={10} fill={'#444'} onClick={toggleAccordion} />
           )}
         </Icon>
       </Button>
