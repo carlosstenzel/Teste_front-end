@@ -10,6 +10,8 @@ Projeto desenvolvido para listar os fundos de investimentos separando os mesmos 
 
 Foi feito alteração no modo de exibição dos fundo usado Lazy load para diminuir o tempo de carregamento, assim como foi usando SWR.
 
+Assim obtendo uma boa nota na nota no [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/?hl=pt-br&url=https%3A%2F%2Fteste-front-end-git-master.carlosstenzel.vercel.app%2F&tab=desktop) , onde poderia ser melhorado ainda mais com paginação no json retorno pelo serve.
+
 Foi utlizado no desenvolvimento:
 
 - [Next.js](https://nextjs.org/)
